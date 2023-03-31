@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHROME DINO GAME</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500px" height="500px"></canvas>
+    <style>
+        #canvas {
+            border: 2px solid black;
+        }
+    </style>
+
+    <script>
+        let canvas = document.querySelector("#canvas");
+        let ctx = canvas.getContext("2d");
+
+        let rand = Math.floor(Math.random() * 80)
+
+
+
+        if (rand === 0 || 1 || 2 || 3 || 4) {
+            rand === 50;
+
+        }
+
+        if (rand === 5 || 6 || 7 || 8 || 9) {
+            rand === 60;
+
+        }
+
+        let xVelocity = 5;
+
+        console.log(rand);
+
+        let dino = {
+            x: 20,
+            y: 470,
+            h: 30,
+            w: 30
+        }
+
+
+
+
+        let treeArray = [];
+        function placeTrees() {
+            let rand2 = 50
+            let trees = {
+                x: 500,
+                h: rand2,
+                w: 10,
+                y: canvas.height - rand2
+            }
+
+            treeArray.push(trees)
+        }
+
+        function drawDino() {
+            ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
+            ctx.strokeRect(dino.x, dino.y, dino.w, dino.h);
+        }
+
+        // function drawTrees() {
+        //     ctx.fillRect(trees.x, trees.y, trees.w, trees.h);
+        //     ctx.strokeRect(trees.x, trees.y, trees.w, trees.h);
+
+        // }
+
+
+
+
+        // function checkCollision() {
+        //             if (trees[0].x = 400) {
+        //                 drawTrees
+        //             }
+        //         }
+
+        // setInterval(checkCollision, 700);
+
+
+        window.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowUp") {
+                dino.y -= 100;
+            }
+        })
+
+        function update() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            drawDino();
+            if (dino.y != 470) {
+                dino.y += 4
+            }
+
+            for (let i = 0; i < treeArray.length; i++) {
+                let element = treeArray[i];
+                element.x -= xVelocity;
+                ctx.fillRect(element.x, element.y, element.w, element.h);
+
+
+            }
+
+            // drawTrees()
+
+            // trees.x -= xVelocity
+            requestAnimationFrame(update)
+
+
+        }
+
+        update()
+        setInterval(placeTrees, 1500);
+
+        function checkCollision() {
+            if (trees.x == dino.x) {
+             console.log("hit");   
+            }
+        }
+
+        
+ 
+    </script>
+</body>
+
+</html>
